@@ -20,6 +20,7 @@ export function splitMessage(
   firstChunkMaxLength?: number,
 ): string[] {
   if (typeof firstChunkMaxLength === 'undefined') firstChunkMaxLength = chunkMaxLength;
+  if (message.length <= firstChunkMaxLength) return [message];
 
   const chunks: string[] = [];
 

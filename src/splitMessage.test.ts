@@ -50,6 +50,13 @@ describe('splitMessage', () => {
     const result = splitMessage(message, chunkMaxLength);
     expect(result).toEqual(['aa', 'bb', 'cc', 'd']);
   });
+
+  it('handles an empty string', () => {
+    const chunkMaxLength = 4;
+    const message = '';
+    const result = splitMessage(message, chunkMaxLength);
+    expect(result).toEqual(['']);
+  });
 });
 
 describe('splitMessageEllipsis', () => {
@@ -89,7 +96,21 @@ describe('splitMessageEllipsis', () => {
     const result = splitMessageEllipsis(message.repeat(1000));
     for (let i = 0; i < result.length; i++) {
       expect(result[i].match(/^\.{3}\s/)).toBeNull();
-      expect(result[i].match(/\s\.{3}$/)).toBeNull(false);
+      expect(result[i].match(/\s\.{3}$/)).toBeNull();
     }
+  });
+
+  it('does no exceed the max chunk length', () => {
+    const maxChunkLength = 179;
+    const message = 'This is a long message that will be split into multiple chunks.';
+    const result = splitMessageEllipsis(message.repeat(1000), maxChunkLength);
+    for (let i = 0; i < result.length; i++) {
+      expect(result[i].length).toBeLessThanOrEqual(maxChunkLength);
+    }
+  });
+
+  it('handles an empty string', () => {
+    const result = splitMessageEllipsis('');
+    expect(result).toEqual(['']);
   });
 });
