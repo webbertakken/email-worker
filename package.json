@@ -1,5 +1,6 @@
 {
 	"name": "email-worker",
+	"type": "module",
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
@@ -10,9 +11,12 @@
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20230221.0",
-		"@vitest/web-worker": "^0.28.5",
 		"prettier": "^2.8.4",
 		"vitest": "^0.28.5",
+		"vitest-environment-miniflare": "^2.12.1",
 		"wrangler": "^2.11.0"
+	},
+	"dependencies": {
+		"postal-mime": "^1.0.15"
 	}
 }

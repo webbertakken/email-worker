@@ -1,31 +1,30 @@
+import PostalMime from 'postal-mime';
 import { EmailExportedHandler } from '@cloudflare/workers-types';
-import { splitMessage, SUBJECT_MAX_LENGTH } from './splitMessage';
+import { splitMessageEllipsis } from './splitMessage';
 
-// Email trigger
-export const email: EmailExportedHandler = async (message, env, ctx) => {
+export const DISC_MAX_LEN = 2000;
+
+export const email: EmailExportedHandler = async (message, env, ctx): Promise<void> => {
   const url = env.DISCORD_WEBHOOK_URL;
 
+  // Get the email message
   const { from, to } = message;
-  const subject = message.headers.get('subject')?.substring(0, SUBJECT_MAX_LENGTH) || '(no subject)';
-  const rawBody = await new Response(message.raw).text();
-  const [body = '(empty body)', ...rest] = splitMessage(rawBody);
+  const subject = message.headers.get('subject') || '(no subject)';
+  const rawBody = await new Response(message.raw).arrayBuffer();
+  const email = await new PostalMime().parse(rawBody);
 
-  const chunks = [`Email from ${from} to ${to} with subject "${subject}":\n\n${body}`, ...rest];
-  for (const content of chunks) {
-    const data = { content };
+  // Discord message
+  const intro = `Email from ${from} to ${to} with subject "${subject}":\n\n`;
+  const [body = '(empty body)', ...rest] = splitMessageEllipsis(email.text!, DISC_MAX_LEN, DISC_MAX_LEN - intro.length);
+  const discordMessage = [`${intro}${body}`, ...rest];
+  for (const part of discordMessage) {
     const response = await fetch(url, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content: part }),
     });
 
-    if (!response.ok) {
-      console.log('Failed to post message to Discord webhook');
-      console.log(await response.json());
-      throw new Error('Failed to post message to Discord webhook');
-    }
+    if (!response.ok) throw new Error('Failed to post message to Discord webhook.' + (await response.json()));
   }
 };
 
