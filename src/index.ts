@@ -2,16 +2,18 @@ import PostalMime from 'postal-mime';
 import { EmailExportedHandler } from '@cloudflare/workers-types';
 import { splitMessageEllipsis } from './splitMessage';
 
-export const DISC_MAX_LEN = 2000;
+const DISC_MAX_LEN = 2000;
 
 export const email: EmailExportedHandler = async (message, env, ctx): Promise<void> => {
+  // @ts-ignore
   const url = env.DISCORD_WEBHOOK_URL;
 
   // Get the email message
   const { from, to } = message;
   const subject = message.headers.get('subject') || '(no subject)';
   const rawBody = await new Response(message.raw).arrayBuffer();
-  const email = await new PostalMime().parse(rawBody);
+  const parser = await new PostalMime();
+  const email = await parser.parse(rawBody);
 
   // Discord message
   const intro = `Email from ${from} to ${to} with subject "${subject}":\n\n`;

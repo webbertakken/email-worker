@@ -2,15 +2,19 @@
   "compilerOptions": {
     "noEmit": true,
     "module": "esnext",
-    "target": "es2020",
-    "lib": ["es2020"],
+    "target": "es2021",
+    "lib": ["es2021"],
     "strict": true,
     "alwaysStrict": true,
     "preserveConstEnums": true,
     "moduleResolution": "node",
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
     "sourceMap": true,
-    "types": ["@types/jest", "@cloudflare/workers-types", "vitest-environment-miniflare/globals", ]
+    "skipLibCheck": true,
+    "types": ["@types/jest", "@cloudflare/workers-types", "vitest-environment-miniflare/globals"]
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist", "test"]
+  "include": ["src/**/*"],
+  "exclude": ["src/**/*.test.ts", "node_modules", "dist", "test"]
 }
