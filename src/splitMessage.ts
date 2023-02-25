@@ -1,40 +1,70 @@
-// Constants
-export const DISCORD_MAX_LENGTH = 2000;
-export const EMAIL_ADDRESS_MAX_LENGTH = 320;
-export const SUBJECT_MAX_LENGTH = 100;
-export const MESSAGE_LIMIT = DISCORD_MAX_LENGTH - EMAIL_ADDRESS_MAX_LENGTH - SUBJECT_MAX_LENGTH - 5;
+const CHUNK_MAX_LENGTH = 2000;
 
-// Max message size must account for ellipsis and level parts that are added to the message.
-export const splitMessage = (message: string, maxMessageSize: number = MESSAGE_LIMIT) => {
-  const numberOfMessages = Math.ceil(message.length / maxMessageSize);
-  const messages = new Array(numberOfMessages);
+export function splitMessageEllipsis(
+  message: string,
+  chunkMaxLength: number = CHUNK_MAX_LENGTH,
+  firstChunkMaxLength?: number,
+): string[] {
+  if (typeof firstChunkMaxLength === 'undefined') firstChunkMaxLength = chunkMaxLength;
 
-  for (let i = 0, pointer = 0; i < numberOfMessages; i++) {
-    let messageSize = maxMessageSize;
+  const separator = '[SEPARATOR]';
 
-    let prefix = '';
-    if (i !== 0) {
-      prefix = '...';
-      messageSize -= 3;
+  return splitMessage(message, chunkMaxLength - 6, firstChunkMaxLength - 3)
+    .join(`...${separator}...`)
+    .split(`${separator}`);
+}
+
+export function splitMessage(
+  message: string,
+  chunkMaxLength: number = CHUNK_MAX_LENGTH,
+  firstChunkMaxLength?: number,
+): string[] {
+  if (typeof firstChunkMaxLength === 'undefined') firstChunkMaxLength = chunkMaxLength;
+
+  const chunks: string[] = [];
+
+  let startIndex = 0;
+  let remainingLength = message.length;
+  while (remainingLength > 0) {
+    // Chunk length
+    let chunkLength = chunks.length === 0 ? firstChunkMaxLength : chunkMaxLength;
+    chunkLength = Math.min(chunkLength, remainingLength);
+
+    // Select substring
+    let endIndex = startIndex + chunkLength;
+    let preChunk: string = message.substring(startIndex, endIndex);
+    let next: string = message.charAt(endIndex) || ' ';
+
+    // Determine exact chunk and its length
+    let chunk: string;
+    const lastSpacePos = preChunk.lastIndexOf(' ');
+
+    if (next === ' ') {
+      chunk = preChunk.trim();
+      chunkLength = preChunk.length + 1;
+    } else if (lastSpacePos === 0) {
+      remainingLength -= 1;
+      startIndex += 1;
+      continue;
+    } else if (lastSpacePos === -1) {
+      chunk = preChunk.trim();
+      chunkLength = preChunk.length;
+    } else {
+      chunk = preChunk.substring(0, lastSpacePos);
+      chunkLength = chunk.length + 1;
+      chunk = chunk.trimEnd();
     }
 
-    let suffix = '';
-    if (i !== numberOfMessages - 1) {
-      suffix = '...';
-      messageSize -= 3;
+    if (chunk.length === 0) {
+      startIndex += chunkLength;
+      remainingLength -= chunkLength;
+      continue;
     }
 
-    // Break at spaces
-    let maxMessage = message.substr(pointer, messageSize);
-    const lastSpacePos = maxMessage.lastIndexOf(' ');
-    if (lastSpacePos >= maxMessageSize - 250) {
-      maxMessage = maxMessage.substr(pointer, lastSpacePos);
-      messageSize = lastSpacePos;
-    }
-
-    messages[i] = `${prefix}${maxMessage}${suffix}`;
-    pointer += messageSize;
+    chunks.push(chunk);
+    remainingLength -= chunkLength;
+    startIndex += chunkLength;
   }
 
-  return messages;
-};
+  return chunks;
+}
