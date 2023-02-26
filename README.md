@@ -1,6 +1,7 @@
-# Email worker
+# Email worker &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/webbertakken/email-worker/blob/main/LICENSE) [![codecov](https://codecov.io/gh/webbertakken/email-worker/branch/main/graph/badge.svg?token=vWf0M5qX20)](https://codecov.io/gh/webbertakken/email-worker) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/webbertakken/email-worker/blob/main/CONTRIBUTING.md)
 
 Send emails to Cloudflare and forward them to different channels using an email worker.
+
 
 
 ## Setup
