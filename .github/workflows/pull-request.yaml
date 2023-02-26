@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -22,3 +22,6 @@ jobs:
 
       - name: Tests
         run: yarn test
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
