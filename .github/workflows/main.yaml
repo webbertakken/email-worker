@@ -21,10 +21,12 @@ jobs:
         run: yarn install --frozen-lockfile --immutable
 
       - name: Tests
-        run: yarn test
+        run: yarn vitest run --coverage
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Publish
         uses: cloudflare/wrangler-action@2.0.0

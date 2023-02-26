@@ -4,6 +4,9 @@
 /.idea
 /dist
 
+# Test coverage
+/coverage
+
 # Env files
 .env
 .env.local

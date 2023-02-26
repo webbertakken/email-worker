@@ -10,5 +10,8 @@ export default defineConfig({
       bindings: {},
       kvNamespaces: ['TEST_NAMESPACE'],
     },
+    coverage: {
+      reporter: ['html', 'lcov', 'clover'],
+    },
   },
 });
