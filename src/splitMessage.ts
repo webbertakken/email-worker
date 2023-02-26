@@ -1,6 +1,6 @@
 const CHUNK_MAX_LENGTH = 2000;
 
-export function splitMessageEllipsis(
+export function splitEllipsis(
   message: string,
   chunkMaxLength: number = CHUNK_MAX_LENGTH,
   firstChunkMaxLength?: number,

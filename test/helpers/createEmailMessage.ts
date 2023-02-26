@@ -1,21 +1,21 @@
 import { vi } from 'vitest';
 
-interface Props {
+export interface Props {
   from?: string;
   to?: string;
   subject?: string;
   body?: string;
   headers?: Record<string, string>;
+  blob?: Blob;
 }
 
-export const createEmailMessage = ({
-  from = '',
-  to = '',
-  subject = '',
-  body = '',
-  headers = {},
-}: Props): EmailMessage => {
-  const blob = new Blob([createRawEmail(from, to, subject, body)], { type: 'text/plain' });
+export const createEmailMessage = (overrides: Partial<Props> = {}): EmailMessage => {
+  const from = overrides.from || 'sender@example.com';
+  const to = overrides.to || 'recipient@example.com';
+  const subject = overrides.subject || 'Question about foo';
+  const body = overrides.body || 'Hello, I have a question about foo:\n\nBar?\n\nThanks!\nBaz';
+  const headers = overrides.headers || {};
+  const blob = overrides.blob || new Blob([createRawEmail(from, to, subject, body)], { type: 'text/plain' });
 
   return {
     from,

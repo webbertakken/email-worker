@@ -2,7 +2,10 @@ import { describe, expect, it, vi } from 'vitest';
 import { createEmailMessage } from '../test/helpers/createEmailMessage';
 import { email } from './index';
 
-describe('email', async () => {
+describe(email.name, async () => {
+  // @ts-ignore -- defined in .env using vitest-environment-miniflare
+  const DISCORD_WEBHOOK_URL = DISCORD_TEST_WEBHOOK_URL;
+
   // Disable Fetch API from making real network requests
   const fetchMock = getMiniflareFetchMock();
   fetchMock.disableNetConnect();
@@ -16,27 +19,59 @@ describe('email', async () => {
 
   it('handles a test email', async () => {
     // Arrange
-    const fetchSpy = vi.spyOn(global, 'fetch');
-    const testEmail: EmailMessage = await createEmailMessage({
-      from: 'senderg@example.com',
-      to: 'recipient@example.com',
-      subject: 'Question about foo',
-      body: 'Hello, I have a question about foo:\n\nBar?\n\nThanks!\nBaz',
-    });
+    const message: EmailMessage = await createEmailMessage();
 
     // Act
-    const call = email(testEmail, { DISCORD_WEBHOOK_URL: DISCORD_TEST_WEBHOOK_URL }, {});
+    const call = email(message, { DISCORD_WEBHOOK_URL }, {});
 
     // Assert
     await expect(call).resolves.toBeUndefined();
-    expect(fetchSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not leave open connections', async () => {
+    // Arrange
+    const message: EmailMessage = await createEmailMessage();
+
+    // Act
+    await email(message, { DISCORD_WEBHOOK_URL }, {});
+
+    // Assert
     fetchMock.assertNoPendingInterceptors();
+  });
+
+  it('uses the webhook url', async () => {
+    // Arrange
+    const fetchSpy = vi.spyOn(global, 'fetch');
+    const message: EmailMessage = await createEmailMessage();
+
+    // Act
+    await email(message, { DISCORD_WEBHOOK_URL }, {});
+
+    // Assert
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
+    expect(fetchSpy).toHaveBeenCalledWith(DISCORD_WEBHOOK_URL, expect.anything());
+  });
+
+  it('correctly passes the body to the webhook', async () => {
+    // Arrange
+    const fetchSpy = vi.spyOn(global, 'fetch');
+    const message: EmailMessage = await createEmailMessage({ body: 'Hello\nI have a question\nBye!' });
+
+    // Act
+    await email(message, { DISCORD_WEBHOOK_URL }, {});
+
+    // Assert
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
+    expect(fetchSpy).toHaveBeenCalledWith(
+      expect.anything(),
+      expect.objectContaining({ body: expect.stringContaining('I have a question') }),
+    );
   });
 
   it('splits long bodies over multiple calls', async () => {
     // Arrange
     const fetchSpy = vi.spyOn(global, 'fetch');
-    const testEmail: EmailMessage = await createEmailMessage({
+    const message: EmailMessage = await createEmailMessage({
       from: 'sender@example.com',
       to: 'recipient@examples.com',
       subject: 'Question about foo',
@@ -49,10 +84,9 @@ describe('email', async () => {
     });
 
     // Act
-    const call = email(testEmail, { DISCORD_WEBHOOK_URL: DISCORD_TEST_WEBHOOK_URL });
+    await email(message, { DISCORD_WEBHOOK_URL });
 
     // Assert
-    await expect(call).resolves.toBeUndefined();
     expect(fetchSpy).toHaveBeenCalledTimes(3);
     fetchMock.assertNoPendingInterceptors();
   });

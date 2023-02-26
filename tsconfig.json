@@ -8,7 +8,6 @@
     "alwaysStrict": true,
     "preserveConstEnums": true,
     "moduleResolution": "node",
-    "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "sourceMap": true,

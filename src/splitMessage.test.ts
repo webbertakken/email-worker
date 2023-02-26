@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 
-import { splitMessage, splitMessageEllipsis } from './splitMessage';
+import { splitMessage, splitEllipsis } from './splitMessage';
 
-describe('splitMessage', () => {
+describe(splitMessage.name, () => {
   it('does not split short messages', () => {
     const message = 'This is a short message.';
     const result = splitMessage(message, message.length);
@@ -59,10 +59,10 @@ describe('splitMessage', () => {
   });
 });
 
-describe('splitMessageEllipsis', () => {
+describe(splitEllipsis.name, () => {
   it('adds leading ellipsis to all but the first chunk', () => {
     const message = 'This is a long message that will be split into multiple chunks.';
-    const result = splitMessageEllipsis(message.repeat(1000));
+    const result = splitEllipsis(message.repeat(1000));
     for (let i = 1; i < result.length; i++) {
       expect(result[i].startsWith('...')).toBe(true);
     }
@@ -71,7 +71,7 @@ describe('splitMessageEllipsis', () => {
   // Adds trailing ellipsis to all but the last chunk
   it('adds trailing ellipsis to all but the last chunk', () => {
     const message = 'This is a long message that will be split into multiple chunks.';
-    const result = splitMessageEllipsis(message.repeat(1000));
+    const result = splitEllipsis(message.repeat(1000));
     for (let i = 0; i < result.length - 1; i++) {
       expect(result[i].endsWith('...')).toBe(true);
     }
@@ -79,21 +79,21 @@ describe('splitMessageEllipsis', () => {
 
   it('does not add trailing ellipsis to the last chunk', () => {
     const message = 'This is a long message that will be split into multiple chunks.';
-    const result = splitMessageEllipsis(message);
+    const result = splitEllipsis(message);
     const lastChunk = result[result.length - 1];
     expect(lastChunk.endsWith('...')).toBe(false);
   });
 
   it('does not add leading ellipsis to the first chunk', () => {
     const message = 'This is a long message that will be split into multiple chunks.';
-    const result = splitMessageEllipsis(message);
+    const result = splitEllipsis(message);
     const firstChunk = result[0];
     expect(firstChunk.startsWith('...')).toBe(false);
   });
 
   it('never has a space between ellipsis and the chunk itself', () => {
     const message = 'This is a long message that will be split into multiple chunks.';
-    const result = splitMessageEllipsis(message.repeat(1000));
+    const result = splitEllipsis(message.repeat(1000));
     for (let i = 0; i < result.length; i++) {
       expect(result[i].match(/^\.{3}\s/)).toBeNull();
       expect(result[i].match(/\s\.{3}$/)).toBeNull();
@@ -103,14 +103,14 @@ describe('splitMessageEllipsis', () => {
   it('does no exceed the max chunk length', () => {
     const maxChunkLength = 179;
     const message = 'This is a long message that will be split into multiple chunks.';
-    const result = splitMessageEllipsis(message.repeat(1000), maxChunkLength);
+    const result = splitEllipsis(message.repeat(1000), maxChunkLength);
     for (let i = 0; i < result.length; i++) {
       expect(result[i].length).toBeLessThanOrEqual(maxChunkLength);
     }
   });
 
   it('handles an empty string', () => {
-    const result = splitMessageEllipsis('');
+    const result = splitEllipsis('');
     expect(result).toEqual(['']);
   });
 });
