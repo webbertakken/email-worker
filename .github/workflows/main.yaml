@@ -1,11 +1,11 @@
-name: Ship 🚢
+name: Deploy 🚢
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
