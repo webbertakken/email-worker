@@ -24,7 +24,7 @@ wrangler publish
 
 #### Set up a webhook
 
-- Right-click a channel then click `Edit Channel`, then `Integrations`.
+- Right-click on a Discord channel then click `Edit Channel`, then `Integrations`.
 - Create a webhook, then copy the URL.
 - Add this url to your secrets:
 
