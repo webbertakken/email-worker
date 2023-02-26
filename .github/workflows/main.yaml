@@ -23,6 +23,9 @@ jobs:
       - name: Tests
         run: yarn test
 
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+
       - name: Publish
         uses: cloudflare/wrangler-action@2.0.0
         with:
