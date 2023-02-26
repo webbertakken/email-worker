@@ -11,10 +11,7 @@ export default defineConfig({
       kvNamespaces: ['TEST_NAMESPACE'],
     },
     coverage: {
-      include: ['src'],
-      exclude: ['test', 'src/**/*.test.ts', 'src/**/*.spec.ts'],
-      provider: process.env.CI ? 'c8' : undefined,
-      reporter: process.env.CI ? ['text', 'json', 'html', 'lcov'] : undefined,
+      reporter: ['html', 'lcov', 'clover'],
     },
   },
 });
