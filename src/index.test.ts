@@ -4,7 +4,7 @@ import { email } from './index';
 
 describe(email.name, async () => {
   // @ts-ignore -- defined in .env using vitest-environment-miniflare
-  const DISCORD_WEBHOOK_URL = DISCORD_TEST_WEBHOOK_URL;
+  const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1234567890/abcdefghijklmnopqrstuvwxyz';
 
   // Disable Fetch API from making real network requests
   const fetchMock = getMiniflareFetchMock();
