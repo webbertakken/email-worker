@@ -10,12 +10,18 @@ export interface Props {
 }
 
 export const createEmailMessage = (overrides: Partial<Props> = {}): EmailMessage => {
-  const from = overrides.from || 'sender@example.com';
-  const to = overrides.to || 'recipient@example.com';
-  const subject = overrides.subject || 'Question about foo';
-  const body = overrides.body || 'Hello, I have a question about foo:\n\nBar?\n\nThanks!\nBaz';
-  const headers = overrides.headers || {};
-  const blob = overrides.blob || new Blob([createRawEmail(from, to, subject, body)], { type: 'text/plain' });
+  const from = typeof overrides.from !== 'undefined' ? overrides.from : 'sender@example.com';
+  const to = typeof overrides.to !== 'undefined' ? overrides.to : 'recipient@example.com';
+  const subject = typeof overrides.subject !== 'undefined' ? overrides.subject : 'Question about foo';
+  const body =
+    typeof overrides.body !== 'undefined'
+      ? overrides.body
+      : 'Hello, I have a question about foo:\n\nBar?\n\nThanks!\nBaz';
+  const headers = typeof overrides.headers !== 'undefined' ? overrides.headers : {};
+  const blob =
+    typeof overrides.blob !== 'undefined'
+      ? overrides.blob
+      : new Blob([createRawEmail(from, to, subject, body)], { type: 'text/plain' });
 
   return {
     from,
