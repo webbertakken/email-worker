@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import { createEmailMessage } from '../test/helpers/createEmailMessage';
-import { email } from './index';
+import { email } from './email';
 
 describe(email.name, async () => {
   // @ts-ignore -- defined in .env using vitest-environment-miniflare
@@ -22,7 +22,7 @@ describe(email.name, async () => {
     const message: EmailMessage = await createEmailMessage();
 
     // Act
-    const call = email(message, { DISCORD_WEBHOOK_URL }, {});
+    const call = email(message, { DISCORD_WEBHOOK_URL });
 
     // Assert
     await expect(call).resolves.toBeUndefined();
@@ -33,7 +33,7 @@ describe(email.name, async () => {
     const message: EmailMessage = await createEmailMessage();
 
     // Act
-    await email(message, { DISCORD_WEBHOOK_URL }, {});
+    await email(message, { DISCORD_WEBHOOK_URL });
 
     // Assert
     fetchMock.assertNoPendingInterceptors();
@@ -45,7 +45,7 @@ describe(email.name, async () => {
     const message: EmailMessage = await createEmailMessage();
 
     // Act
-    await email(message, { DISCORD_WEBHOOK_URL }, {});
+    await email(message, { DISCORD_WEBHOOK_URL });
 
     // Assert
     expect(fetchSpy).toHaveBeenCalledTimes(1);
@@ -58,7 +58,7 @@ describe(email.name, async () => {
     const message: EmailMessage = await createEmailMessage({ body: 'Hello\nI have a question\nBye!' });
 
     // Act
-    await email(message, { DISCORD_WEBHOOK_URL }, {});
+    await email(message, { DISCORD_WEBHOOK_URL });
 
     // Assert
     expect(fetchSpy).toHaveBeenCalledTimes(1);
@@ -89,5 +89,85 @@ describe(email.name, async () => {
     // Assert
     expect(fetchSpy).toHaveBeenCalledTimes(3);
     fetchMock.assertNoPendingInterceptors();
+  });
+
+  it("throws immediately if the webhook url isn't set", async () => {
+    // Arrange
+    const message: EmailMessage = await createEmailMessage();
+
+    // Act
+    const call = email(message, { DISCORD_WEBHOOK_URL: undefined });
+
+    // Assert
+    await expect(call).rejects.toThrow('Missing DISCORD_WEBHOOK_URL');
+  });
+
+  it('reflects when no subject was given', async () => {
+    // Arrange
+    const fetchSpy = vi.spyOn(global, 'fetch');
+    const message: EmailMessage = await createEmailMessage({ subject: '' });
+
+    // Act
+    const call = email(message, { DISCORD_WEBHOOK_URL });
+
+    // Assert
+    await expect(call).resolves.toBeUndefined();
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
+    expect(fetchSpy).toHaveBeenCalledWith(
+      expect.anything(),
+      expect.objectContaining({ body: expect.stringContaining('(no subject)') }),
+    );
+  });
+
+  it('reports errors', async () => {
+    // Arrange
+    const message: EmailMessage = await createEmailMessage();
+    const fetchSpy = vi.spyOn(global, 'fetch').mockImplementationOnce(() => {
+      throw new Error('Something unexpected');
+    });
+
+    // Act
+    const invocation = email(message, { DISCORD_WEBHOOK_URL });
+    const calls = fetchSpy.mock.calls;
+
+    // Assert
+    await expect(invocation).resolves.toBeUndefined();
+    expect(fetchSpy.mock.calls[1]).toStrictEqual([
+      expect.any(String),
+      expect.objectContaining({ body: expect.stringContaining('Something unexpected') }),
+    ]);
+  });
+
+  it('reports an error if the response is not ok', async () => {
+    // Arrange
+    const message: EmailMessage = await createEmailMessage();
+    // @ts-ignore
+    const fetchSpy = vi.spyOn(global, 'fetch').mockImplementationOnce(() => {
+      return Promise.resolve({ ok: false, status: 500, json: () => Promise.resolve('Something unexpected') });
+    });
+
+    // Act
+    const invocation = email(message, { DISCORD_WEBHOOK_URL });
+
+    // Assert
+    await expect(invocation).resolves.toBeUndefined();
+    expect(fetchSpy.mock.calls[1]).toStrictEqual([
+      expect.any(String),
+      expect.objectContaining({ body: expect.stringContaining('Something unexpected') }),
+    ]);
+  });
+
+  it('throws if the error can not be reported', async () => {
+    // Arrange
+    const message: EmailMessage = await createEmailMessage();
+    vi.spyOn(global, 'fetch').mockImplementation(() => {
+      throw new Error('Something unexpected');
+    });
+
+    // Act
+    const invocation = email(message, { DISCORD_WEBHOOK_URL });
+
+    // Assert
+    await expect(invocation).rejects.toThrow('Something unexpected');
   });
 });
