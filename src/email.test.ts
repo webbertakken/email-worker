@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
 import { createEmailMessage } from '../test/helpers/createEmailMessage';
-import { email } from './index';
+import { email } from './email';
 
 describe(email.name, async () => {
   // @ts-ignore -- defined in .env using vitest-environment-miniflare
@@ -89,5 +89,25 @@ describe(email.name, async () => {
     // Assert
     expect(fetchSpy).toHaveBeenCalledTimes(3);
     fetchMock.assertNoPendingInterceptors();
+  });
+
+  it('reports errors', async () => {
+    // Arrange
+    const message: EmailMessage = await createEmailMessage();
+    const fetchSpy = vi.spyOn(global, 'fetch').mockImplementationOnce(() => {
+      throw new Error('Something unexpected');
+    });
+
+    // Act
+    const invocation = email(message, { DISCORD_WEBHOOK_URL }, {});
+    const calls = fetchSpy.mock.calls;
+
+    // Assert
+    await expect(invocation).resolves.toBeUndefined();
+    expect(calls.length).toStrictEqual(2);
+    expect(calls[1]).toStrictEqual([
+      expect.any(String),
+      expect.objectContaining({ body: expect.stringContaining('Something unexpected') }),
+    ]);
   });
 });

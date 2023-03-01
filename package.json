@@ -2,11 +2,12 @@
 	"name": "email-worker",
 	"type": "module",
 	"version": "1.0.0",
-	"private": true,
-	"scripts": {
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
 		"deploy": "wrangler publish src/index.ts",
 		"dev": "wrangler dev src/index.ts --local",
-		"test": "vitest run --coverage"
+		"test": "vitest --coverage"
 	},
 	"dependencies": {
 		"letterparser": "^0.0.10",
