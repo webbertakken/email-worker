@@ -160,14 +160,16 @@ describe(email.name, async () => {
   it('throws if the error can not be reported', async () => {
     // Arrange
     const message: EmailMessage = await createEmailMessage();
-    vi.spyOn(global, 'fetch').mockImplementation(() => {
-      throw new Error('Something unexpected');
+    // @ts-ignore
+    const fetchSpy = vi.spyOn(global, 'fetch').mockImplementation(() => {
+      return Promise.resolve({ ok: false, status: 500, json: () => Promise.resolve('Something unexpected') });
     });
 
     // Act
     const invocation = email(message, { DISCORD_WEBHOOK_URL });
 
     // Assert
-    await expect(invocation).rejects.toThrow('Something unexpected');
+    await expect(invocation).rejects.toThrow('Failed to post error to Discord webhook.');
+    expect(fetchSpy).toHaveBeenCalledTimes(2);
   });
 });
