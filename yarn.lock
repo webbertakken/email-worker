@@ -43,9 +43,9 @@
   integrity sha512-HQU8lJhaJVh8gQXFtVA7lZwd0hK1ckIFjRuxOXkVN2Z9t7DtzNbA2YTwBry5thKNgF5EwjN4THjHg5NUZzj05A==
 
 "@cloudflare/workers-types@^4.20230221.0":
-  version "4.20240129.0"
-  resolved "https://registry.yarnpkg.com/@cloudflare/workers-types/-/workers-types-4.20240129.0.tgz#a10e314565ff5edeb00592ed0e06686f561ba524"
-  integrity sha512-VyHbih/bqh/RN2FRxnXznG0bpBIg9RfSP1ldbAVnCXFinjOdv0zm2P/RWqOVN9+FgU5sanRltwwT7jGngxZy8w==
+  version "4.20240222.0"
+  resolved "https://registry.yarnpkg.com/@cloudflare/workers-types/-/workers-types-4.20240222.0.tgz#0412840177469979e2c378d8e8bf03f1b895b77f"
+  integrity sha512-luO0BdK3rLlCv3B240+cTrfqm+XSbHtpk+88aJtGwzyVK9QF/Xz8lBgE/oZZLN8nCTmOvxAZnszyxUuZ8GP8Cg==
 
 "@esbuild/android-arm64@0.17.19":
   version "0.17.19"
