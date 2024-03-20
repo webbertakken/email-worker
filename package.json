@@ -10,7 +10,7 @@
 		"test": "vitest --coverage"
 	},
 	"dependencies": {
-		"letterparser": "^0.0.10",
+		"letterparser": "^0.1.0",
 		"util": "^0.12.5"
 	},
 	"devDependencies": {

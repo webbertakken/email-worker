@@ -1164,20 +1164,20 @@ kleur@^4.1.4:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-4.1.5.tgz#95106101795f7050c6c650f350c683febddb1780"
   integrity sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==
 
-lettercoder@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/lettercoder/-/lettercoder-0.0.5.tgz#da6df02e5b3d2929b3c41369c5769d954e91ad5a"
-  integrity sha512-t/AQgvlY5U8mBnxY4968nSxj+YRfP1MM0h6GgR5lcw2PpBhkAf7SuRxug1i+KgJAk5q0CvOVe1j3xMg+oI80/g==
+lettercoder@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/lettercoder/-/lettercoder-0.0.7.tgz#9a1bd4e82a6c6acb8163d11c97f1ee210ffd1898"
+  integrity sha512-Y8jW6TB69eoir8f5OCo2lulSxCqckPRQtWLyBGz7f+yaPL/nPfDsoLTzsVjl2d+ZEUh5nL0eS446LicJ+mqlJg==
   dependencies:
     base64-js "^1.5.1"
 
-letterparser@^0.0.10:
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/letterparser/-/letterparser-0.0.10.tgz#f3678831bf3e96b0528a17e5376ac9bf3157ec7e"
-  integrity sha512-wJih0lnMrgEwTt4fyaoLDTb6lyn07KO6Od+1SP7h4zdP07z2baGLvWAIogYzL5kNLgcZf7F9kt4ie2zQHpvCpg==
+letterparser@^0.1.0:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/letterparser/-/letterparser-0.1.4.tgz#ae9e2276c49342a3ff136ad174ca0e768410e05e"
+  integrity sha512-pSt3/K7pOm/qYGMcowiNCkqiFZwIHa3j0ZJl4dmLznaZBM3VYJOU+Ijv5apYeaRB4KTgZC5lYM3uSxgZaJr5Cw==
   dependencies:
     base64-js "^1.5.1"
-    lettercoder "^0.0.5"
+    lettercoder "^0.0.7"
 
 local-pkg@^0.4.3:
   version "0.4.3"
