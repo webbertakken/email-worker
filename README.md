@@ -18,7 +18,7 @@ yarn install
 #### Deploy the worker
 
 ```bash
-wrangler publish
+yarn deploy
 ```
 
 #### Set up a webhook

@@ -4,6 +4,7 @@
 /.idea
 /dist
 /.yarn/
+/.wrangler/
 
 # Test coverage
 /coverage

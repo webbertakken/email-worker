@@ -5,8 +5,8 @@
 	"private": true,
 	"main": "src/index.ts",
 	"scripts": {
-		"deploy": "wrangler publish src/index.ts",
-		"dev": "wrangler dev src/index.ts --local",
+		"deploy": "wrangler deploy",
+		"dev": "wrangler dev",
 		"test": "vitest",
     "coverage": "vitest --coverage"
 	},
