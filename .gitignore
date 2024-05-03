@@ -3,6 +3,7 @@
 *.log
 /.idea
 /dist
+/.yarn/
 
 # Test coverage
 /coverage
