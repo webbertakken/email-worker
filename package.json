@@ -8,10 +8,10 @@
 		"deploy": "wrangler deploy",
 		"dev": "wrangler dev",
 		"test": "vitest",
-    "coverage": "vitest --coverage"
+		"coverage": "vitest --coverage"
 	},
 	"dependencies": {
-		"letterparser": "^0.0.10",
+		"letterparser": "^0.1.5",
 		"util": "^0.12.5"
 	},
 	"devDependencies": {

@@ -1227,7 +1227,7 @@ __metadata:
     "@cloudflare/workers-types": "npm:^4.20240502.0"
     "@types/jest": "npm:^29.5.12"
     "@vitest/coverage-v8": "npm:^0.34.6"
-    letterparser: "npm:^0.0.10"
+    letterparser: "npm:^0.1.5"
     prettier: "npm:^3.2.5"
     typescript: "npm:^5.4.5"
     util: "npm:^0.12.5"
@@ -1997,22 +1997,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lettercoder@npm:^0.0.5":
-  version: 0.0.5
-  resolution: "lettercoder@npm:0.0.5"
+"lettercoder@npm:^0.0.7":
+  version: 0.0.7
+  resolution: "lettercoder@npm:0.0.7"
   dependencies:
     base64-js: "npm:^1.5.1"
-  checksum: 10c0/cc19b19b60cb9ce1db7ae8120c33387626d475ed17cb988ec0b94ac1cd47da81a2be9f44f9b257547669985db520672a576d388ff08b23320f1ebced61c6de16
+  checksum: 10c0/5380b73d046207a4a9d05d2462a4c32f247b83bdc4d370873f6238d2a9736623dcc96d21b6ef127d1ca93d7bbeab6a6c3a2fbde6f1e3f7e6dde26eaf2b1c9791
   languageName: node
   linkType: hard
 
-"letterparser@npm:^0.0.10":
-  version: 0.0.10
-  resolution: "letterparser@npm:0.0.10"
+"letterparser@npm:^0.1.5":
+  version: 0.1.5
+  resolution: "letterparser@npm:0.1.5"
   dependencies:
     base64-js: "npm:^1.5.1"
-    lettercoder: "npm:^0.0.5"
-  checksum: 10c0/e8bf6530fbe3a7c2ad3d1516cb94b3fa2d71aabfb4bb361da7496d06e8271bd3e67ff08e4b171d06c573e58040ae9a8818c4ad3ed69a20d3716d9ff7bd37b9cc
+    lettercoder: "npm:^0.0.7"
+  checksum: 10c0/3730e8044c79c074816407dfa39d5812000ba128c229b6b5a9a56d2876f2b567a5cf0950c20dd090781371997f0cedd9e28b377a9e3a6ee777b4b7f1ebf935a0
   languageName: node
   linkType: hard
 
