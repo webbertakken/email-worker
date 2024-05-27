@@ -50,17 +50,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cloudflare/workers-types@npm:^4.20221111.1":
-  version: 4.20240117.0
-  resolution: "@cloudflare/workers-types@npm:4.20240117.0"
-  checksum: 10c0/900b796af2ae97257e1f6171b9c37d718c5f8ae064cea8f8d1c48e52ccde01492c5cfa61716fc703d05a6bd92e50a55f7d9e525d2c91919db76e42458c3e8e76
-  languageName: node
-  linkType: hard
-
-"@cloudflare/workers-types@npm:^4.20240502.0":
-  version: 4.20240502.0
-  resolution: "@cloudflare/workers-types@npm:4.20240502.0"
-  checksum: 10c0/b4104979faa6a8a2a8766a65c646cf7297f2b55b535676d358b934e8d76922e86766e4fb3900cdde2bb8011779ba0897a7f54b5d2df3c8868e2c3d32b397cdaf
+"@cloudflare/workers-types@npm:^4.20221111.1, @cloudflare/workers-types@npm:^4.20240502.0":
+  version: 4.20240512.0
+  resolution: "@cloudflare/workers-types@npm:4.20240512.0"
+  checksum: 10c0/2121867705db9b5e8e44e8d7baf6c3982e7ce41e9e01ea2d2502b7f00c73859a17b23cfcc79c88c5a55c725229d36c5cc6a5d3399ffd62f8be72c2f48ab7c128
   languageName: node
   linkType: hard
 
