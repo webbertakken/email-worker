@@ -2960,6 +2960,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"undici@npm:5.28.4":
+  version: 5.28.4
+  resolution: "undici@npm:5.28.4"
+  dependencies:
+    "@fastify/busboy": "npm:^2.0.0"
+  checksum: 10c0/08d0f2596553aa0a54ca6e8e9c7f45aef7d042c60918564e3a142d449eda165a80196f6ef19ea2ef2e6446959e293095d8e40af1236f0d67223b06afac5ecad7
+  languageName: node
+  linkType: hard
+
 "unique-filename@npm:^3.0.0":
   version: 3.0.0
   resolution: "unique-filename@npm:3.0.0"
@@ -3074,17 +3083,17 @@ __metadata:
   linkType: hard
 
 "vitest-environment-miniflare@npm:^2.14.2":
-  version: 2.14.2
-  resolution: "vitest-environment-miniflare@npm:2.14.2"
+  version: 2.14.3
+  resolution: "vitest-environment-miniflare@npm:2.14.3"
   dependencies:
     "@miniflare/queues": "npm:2.14.2"
     "@miniflare/runner-vm": "npm:2.14.2"
     "@miniflare/shared": "npm:2.14.2"
     "@miniflare/shared-test-environment": "npm:2.14.2"
-    undici: "npm:5.28.2"
+    undici: "npm:5.28.4"
   peerDependencies:
     vitest: ">=0.23.0"
-  checksum: 10c0/d2e0f7379702d4697a38e8804a7d7abb17e5106b68402f234520cfd8494060895692a75128ef35041dc3e8bdc206c68cec30e8c0766f5af145fe7a8079d031e4
+  checksum: 10c0/a61a97fae2471c86e31c610d7ddefcaceb333335b1909ee018b1ffd4513b18f34d522804175710cb5602f7aeb956dca0a4b8eaa8a87d1f11b7a291897c259dea
   languageName: node
   linkType: hard
 
