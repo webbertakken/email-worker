@@ -2000,12 +2000,12 @@ __metadata:
   linkType: hard
 
 "letterparser@npm:^0.1.5":
-  version: 0.1.7
-  resolution: "letterparser@npm:0.1.7"
+  version: 0.1.8
+  resolution: "letterparser@npm:0.1.8"
   dependencies:
     base64-js: "npm:^1.5.1"
     lettercoder: "npm:^0.0.7"
-  checksum: 10c0/0be259a31449578fac4414a4d9ace9a7820a5d23a4615656c3ea05a8dee9ed1134117ab7d1fb0f3a14969b90c53aeb984a19244fa35db1c1f43b6fad8228540a
+  checksum: 10c0/73a30abb18a483ffd84d73110f5ba5197e3a666150febc395619140f33745862774b341f346f9df2900e9d2571c356be60708b468e17fc3af46f192dc94b6f9f
   languageName: node
   linkType: hard
 
