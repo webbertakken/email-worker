@@ -7,7 +7,7 @@ Send emails to Cloudflare and forward them to different channels using an email 
 #### Prerequisites
 
 - Cloudflare [account](https://dash.cloudflare.com/sign-up) (free)
-- [Volta](https://volta.sh/) installed
+- [Volta](https://volta.sh/) installed (for managing correct Node and Yarn versions)
 - Wrangler installed [globally](https://developers.cloudflare.com/workers/wrangler/install-and-update/#install-wrangler-globally)
 
 #### Install dependencies
