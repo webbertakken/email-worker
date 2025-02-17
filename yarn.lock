@@ -51,9 +51,9 @@ __metadata:
   linkType: hard
 
 "@cloudflare/workers-types@npm:^4.20221111.1, @cloudflare/workers-types@npm:^4.20240502.0":
-  version: 4.20250204.0
-  resolution: "@cloudflare/workers-types@npm:4.20250204.0"
-  checksum: 10c0/9c5340ff0ce87a603109f1f06041dfd114fe518577e798e7c30e20228207c4a9074be12e5df5eb3692d6a67e14ca02708f2bc3188cad542c43c4213c73775619
+  version: 4.20250214.0
+  resolution: "@cloudflare/workers-types@npm:4.20250214.0"
+  checksum: 10c0/43b01ec926c2fd945dd84ba7df9634cd8a0860cc1c3df6fd3dff3f399d852074edd081ada45430b3b4b9c9a7ec87c42ff9e4ef686769ad1ae17003ea9da86214
   languageName: node
   linkType: hard
 
@@ -2477,11 +2477,11 @@ __metadata:
   linkType: hard
 
 "prettier@npm:^3.2.5":
-  version: 3.5.0
-  resolution: "prettier@npm:3.5.0"
+  version: 3.5.1
+  resolution: "prettier@npm:3.5.1"
   bin:
     prettier: bin/prettier.cjs
-  checksum: 10c0/6c355d74c377f5622953229d92477e8b9779162e848db90fd7e06c431deb73585d31fafc4516cf5868917825b97b9ec7c87c8d8b8e03ccd9fc9c0b7699d1a650
+  checksum: 10c0/9f6f810eae455d6e4213845151a484a2338f2e0d6a8b84ee8e13a83af8a2421ef6c1e31e61e4b135671fb57b9541f6624648880cc2061ac803e243ac898c0123
   languageName: node
   linkType: hard
 
