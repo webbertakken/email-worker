@@ -24,7 +24,7 @@
 		"vitest-environment-miniflare": "^2.14.2"
 	},
 	"volta": {
-		"node": "20.18.1",
+		"node": "20.18.3",
 		"yarn": "4.7.0"
 	},
 	"packageManager": "yarn@4.7.0"
