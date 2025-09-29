@@ -51,9 +51,9 @@ __metadata:
   linkType: hard
 
 "@cloudflare/workers-types@npm:^4.20221111.1, @cloudflare/workers-types@npm:^4.20240502.0":
-  version: 4.20250922.0
-  resolution: "@cloudflare/workers-types@npm:4.20250922.0"
-  checksum: 10c0/3d794222be1096e429c9b5958f835c897426d5fc471c5a5069477156b9324d48e1aa56f4167abec45a9b6d1654ad70b2393b550cdce7c460b25f9ea0ef67bfc8
+  version: 4.20250927.0
+  resolution: "@cloudflare/workers-types@npm:4.20250927.0"
+  checksum: 10c0/1cbface71b91853d3a86ab1ad35f7f0f0df351302519485d9620d8ae71763ca7ba138db64dbf8f8a817e7ff9937ec5847660aee0ed14253bdeb6d25ac997afce
   languageName: node
   linkType: hard
 
