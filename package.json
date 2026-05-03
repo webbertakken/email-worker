@@ -1,31 +1,32 @@
 {
-	"name": "email-worker",
-	"type": "module",
-	"version": "1.0.0",
-	"private": true,
-	"main": "src/index.ts",
-	"scripts": {
-		"deploy": "wrangler deploy",
-		"dev": "wrangler dev",
-		"test": "vitest",
-		"coverage": "vitest --coverage"
-	},
-	"dependencies": {
-		"letterparser": "^0.1.5",
-		"util": "^0.12.5"
-	},
-	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20240502.0",
-		"@types/jest": "^29.5.12",
-		"@vitest/coverage-v8": "^0.34.6",
-		"prettier": "^3.2.5",
-		"typescript": "^5.4.5",
-		"vitest": "^1.6.0",
-		"vitest-environment-miniflare": "^2.14.2"
-	},
-	"volta": {
-		"node": "20.19.5",
-		"yarn": "4.11.0"
-	},
-	"packageManager": "yarn@4.11.0"
+  "name": "email-worker",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "test": "vitest",
+    "coverage": "vitest --coverage"
+  },
+  "dependencies": {
+    "letterparser": "^0.1.5",
+    "util": "^0.12.5"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240502.0",
+    "@types/jest": "^29.5.12",
+    "@vitest/coverage-v8": "^0.34.6",
+    "prettier": "^3.2.5",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0",
+    "vitest-environment-miniflare": "^2.14.2"
+  },
+  "packageManager": "yarn@4.14.1",
+  "dependenciesMeta": {
+    "esbuild": {
+      "built": true
+    }
+  }
 }
