@@ -8,7 +8,8 @@ Send emails to Cloudflare and forward them to different channels using an email 
 
 - Cloudflare [account](https://dash.cloudflare.com/sign-up) (free)
 - [Volta](https://volta.sh/) installed (for managing correct Node and Yarn versions)
-- Wrangler installed [globally](https://developers.cloudflare.com/workers/wrangler/install-and-update/#install-wrangler-globally)
+- Wrangler installed
+  [globally](https://developers.cloudflare.com/workers/wrangler/install-and-update/#install-wrangler-globally)
 
 #### Install dependencies
 
@@ -54,8 +55,8 @@ You should see something like this
 
 ## Tips
 
-- Change the `name` field in `wrangler.toml` to deploy a separate worker with a separate secret (e.g. with a separate webhook for a test channel). 
-
+- Change the `name` field in `wrangler.toml` to deploy a separate worker with a separate secret (e.g. with a separate
+  webhook for a test channel).
 
 ## License
 
@@ -63,4 +64,5 @@ This package is [MIT](./LICENSE) licensed.
 
 #### Sub licenses
 
-- [`mat-sz/letterparser`](https://github.com/mat-sz/letterparser): [BSD-3 Clause Clear](https://github.com/mat-sz/letterparser/blob/master/LICENSE)
+- [`mat-sz/letterparser`](https://github.com/mat-sz/letterparser):
+  [BSD-3 Clause Clear](https://github.com/mat-sz/letterparser/blob/master/LICENSE)

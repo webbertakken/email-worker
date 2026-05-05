@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { createEmailMessage } from '../test/helpers/createEmailMessage';
 import { email } from './email';
 
-describe(email.name, async () => {
+describe(email.name, () => {
   // @ts-ignore -- defined in .env using vitest-environment-miniflare
   const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1234567890/abcdefghijklmnopqrstuvwxyz';
 
@@ -19,7 +19,7 @@ describe(email.name, async () => {
 
   it('handles a test email', async () => {
     // Arrange
-    const message: EmailMessage = await createEmailMessage();
+    const message: ForwardableEmailMessage = await createEmailMessage();
 
     // Act
     const call = email(message, { DISCORD_WEBHOOK_URL });
@@ -30,7 +30,7 @@ describe(email.name, async () => {
 
   it('does not leave open connections', async () => {
     // Arrange
-    const message: EmailMessage = await createEmailMessage();
+    const message: ForwardableEmailMessage = await createEmailMessage();
 
     // Act
     await email(message, { DISCORD_WEBHOOK_URL });
@@ -42,7 +42,7 @@ describe(email.name, async () => {
   it('uses the webhook url', async () => {
     // Arrange
     const fetchSpy = vi.spyOn(global, 'fetch');
-    const message: EmailMessage = await createEmailMessage();
+    const message: ForwardableEmailMessage = await createEmailMessage();
 
     // Act
     await email(message, { DISCORD_WEBHOOK_URL });
@@ -55,7 +55,7 @@ describe(email.name, async () => {
   it('correctly passes the body to the webhook', async () => {
     // Arrange
     const fetchSpy = vi.spyOn(global, 'fetch');
-    const message: EmailMessage = await createEmailMessage({ body: 'Hello\nI have a question\nBye!' });
+    const message: ForwardableEmailMessage = await createEmailMessage({ body: 'Hello\nI have a question\nBye!' });
 
     // Act
     await email(message, { DISCORD_WEBHOOK_URL });
@@ -71,7 +71,7 @@ describe(email.name, async () => {
   it('splits long bodies over multiple calls', async () => {
     // Arrange
     const fetchSpy = vi.spyOn(global, 'fetch');
-    const message: EmailMessage = await createEmailMessage({
+    const message: ForwardableEmailMessage = await createEmailMessage({
       from: 'sender@example.com',
       to: 'recipient@examples.com',
       subject: 'Question about foo',
@@ -93,7 +93,7 @@ describe(email.name, async () => {
 
   it("throws immediately if the webhook url isn't set", async () => {
     // Arrange
-    const message: EmailMessage = await createEmailMessage();
+    const message: ForwardableEmailMessage = await createEmailMessage();
 
     // Act
     const call = email(message, { DISCORD_WEBHOOK_URL: undefined });
@@ -105,7 +105,7 @@ describe(email.name, async () => {
   it('reflects when no subject was given', async () => {
     // Arrange
     const fetchSpy = vi.spyOn(global, 'fetch');
-    const message: EmailMessage = await createEmailMessage({ subject: '' });
+    const message: ForwardableEmailMessage = await createEmailMessage({ subject: '' });
 
     // Act
     const call = email(message, { DISCORD_WEBHOOK_URL });
@@ -121,7 +121,7 @@ describe(email.name, async () => {
 
   it('reports errors', async () => {
     // Arrange
-    const message: EmailMessage = await createEmailMessage();
+    const message: ForwardableEmailMessage = await createEmailMessage();
     const fetchSpy = vi.spyOn(global, 'fetch').mockImplementationOnce(() => {
       throw new Error('Something unexpected');
     });
@@ -140,7 +140,7 @@ describe(email.name, async () => {
 
   it('reports an error if the response is not ok', async () => {
     // Arrange
-    const message: EmailMessage = await createEmailMessage();
+    const message: ForwardableEmailMessage = await createEmailMessage();
     // @ts-ignore
     const fetchSpy = vi.spyOn(global, 'fetch').mockImplementationOnce(() => {
       return Promise.resolve({ ok: false, status: 500, json: () => Promise.resolve('Something unexpected') });
@@ -159,7 +159,7 @@ describe(email.name, async () => {
 
   it('throws if the error can not be reported', async () => {
     // Arrange
-    const message: EmailMessage = await createEmailMessage();
+    const message: ForwardableEmailMessage = await createEmailMessage();
     // @ts-ignore
     const fetchSpy = vi.spyOn(global, 'fetch').mockImplementation(() => {
       return Promise.resolve({ ok: false, status: 500, json: () => Promise.resolve('Something unexpected') });

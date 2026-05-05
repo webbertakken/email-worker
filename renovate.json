@@ -1,6 +1,4 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "local>webbertakken/.github:renovate-config"
-  ]
+  "extends": ["local>webbertakken/.github:renovate-config"]
 }
