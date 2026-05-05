@@ -6,9 +6,25 @@
   "main": "src/index.ts",
   "scripts": {
     "deploy": "wrangler deploy",
-    "dev": "wrangler dev",
-    "test": "vitest",
-    "coverage": "vitest --coverage"
+    "dev": "node scripts/ensure-husky.mjs && wrangler dev",
+    "test": "node scripts/ensure-husky.mjs && vitest run",
+    "test:watch": "vitest",
+    "coverage": "vitest run --coverage",
+    "lint": "yarn oxlint --deny-warnings --report-unused-disable-directives",
+    "format": "oxfmt --write",
+    "format:check": "oxfmt --check",
+    "typecheck": "tsgo --noEmit",
+    "typecheck:tsc": "tsc --noEmit",
+    "setup:hooks": "node scripts/ensure-husky.mjs",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.@(ts|tsx|mts|js|jsx|mjs|cjs)": [
+      "oxlint --fix --quiet",
+      "oxfmt --write"
+    ],
+    "*.@(json|jsonc|json5|md|mdx|yaml|yml|css|scss|sass|html|toml)": "oxfmt --write",
+    ".github/workflows/*.@(yml|yaml)": "actionlint"
   },
   "dependencies": {
     "letterparser": "^0.1.5",
@@ -16,9 +32,14 @@
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240502.0",
-    "@types/jest": "^29.5.12",
-    "@vitest/coverage-v8": "^0.34.6",
-    "prettier": "^3.2.5",
+    "@typescript/native-preview": "^7.0.0-dev.20260505.1",
+    "@vitest/coverage-v8": "^1.6.0",
+    "eslint": "^10.3.0",
+    "eslint-plugin-unicorn": "^64.0.0",
+    "husky": "9",
+    "lint-staged": "^16.4.0",
+    "oxfmt": "^0.48.0",
+    "oxlint": "^1.63.0",
     "typescript": "^5.4.5",
     "vitest": "^1.6.0",
     "vitest-environment-miniflare": "^2.14.2"

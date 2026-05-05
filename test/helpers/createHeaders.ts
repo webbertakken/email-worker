@@ -12,7 +12,7 @@ export const createHeaders = (headersObject: Record<string, string>): Headers =>
   headers.delete = (name: string): void => {
     delete headersObject[name];
   };
-  headers.forEach = (callback: (value: string, key: string, parent: Headers) => void, thisArg?: any): void => {
+  headers.forEach = (callback: (value: string, key: string, parent: Headers) => void, _thisArg?: any): void => {
     Object.entries(headers).forEach(([key, value]) => callback(value as unknown as string, key, headers as Headers));
   };
   headers.entries = (): IterableIterator<[key: string, value: string]> =>

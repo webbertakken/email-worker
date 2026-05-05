@@ -1,0 +1,9 @@
+{
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "printWidth": 120,
+  "proseWrap": "always",
+  "sortPackageJson": false,
+  "ignorePatterns": ["**/node_modules/**", "**/dist/**", "**/coverage/**", "**/.yarn/**", "**/.wrangler/**"]
+}

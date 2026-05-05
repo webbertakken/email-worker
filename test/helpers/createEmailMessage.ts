@@ -9,7 +9,7 @@ export interface Props {
   blob?: Blob;
 }
 
-export const createEmailMessage = (overrides: Partial<Props> = {}): EmailMessage => {
+export const createEmailMessage = (overrides: Partial<Props> = {}): ForwardableEmailMessage => {
   const from = typeof overrides.from !== 'undefined' ? overrides.from : 'sender@example.com';
   const to = typeof overrides.to !== 'undefined' ? overrides.to : 'recipient@example.com';
   const subject = typeof overrides.subject !== 'undefined' ? overrides.subject : 'Question about foo';
@@ -31,6 +31,7 @@ export const createEmailMessage = (overrides: Partial<Props> = {}): EmailMessage
     rawSize: blob.size,
     setReject: vi.fn(),
     forward: vi.fn(),
+    reply: vi.fn(),
   };
 };
 
