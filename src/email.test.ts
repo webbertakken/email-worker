@@ -1,25 +1,29 @@
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { createEmailMessage } from '../test/helpers/createEmailMessage';
+
 import { email } from './email';
 
+const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1234567890/abcdefghijklmnopqrstuvwxyz';
+
+const okResponse = () => new Response('Discord is happy in this Mock!', { status: 200 });
+
 describe(email.name, () => {
-  // @ts-ignore -- defined in .env using vitest-environment-miniflare
-  const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1234567890/abcdefghijklmnopqrstuvwxyz';
+  beforeEach(() => {
+    // Default behaviour: every outbound `fetch` resolves to a 200 from
+    // Discord. Individual tests override with `mockImplementationOnce` /
+    // `mockImplementation` to simulate failures. This replaces the old
+    // `getMiniflareFetchMock()` global from `vitest-environment-miniflare`.
+    vi.spyOn(globalThis, 'fetch').mockImplementation(async () => okResponse());
+  });
 
-  // Disable Fetch API from making real network requests
-  const fetchMock = getMiniflareFetchMock();
-  fetchMock.disableNetConnect();
-
-  // Intercept calls to Discord's webhook API
-  const origin = fetchMock.get('https://discord.com');
-  origin
-    .intercept({ method: 'POST', path: /api\/webhooks\/.*/ })
-    .reply(200, 'Discord is happy in this Mock!')
-    .persist();
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
 
   it('handles a test email', async () => {
     // Arrange
-    const message: ForwardableEmailMessage = await createEmailMessage();
+    const message = await createEmailMessage();
 
     // Act
     const call = email(message, { DISCORD_WEBHOOK_URL });
@@ -30,19 +34,21 @@ describe(email.name, () => {
 
   it('does not leave open connections', async () => {
     // Arrange
-    const message: ForwardableEmailMessage = await createEmailMessage();
+    const fetchSpy = vi.mocked(globalThis.fetch);
+    const message = await createEmailMessage();
 
     // Act
     await email(message, { DISCORD_WEBHOOK_URL });
 
-    // Assert
-    fetchMock.assertNoPendingInterceptors();
+    // Assert: exactly one outbound fetch was made and it resolved (so no
+    // dangling promises / open connections beyond it).
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
   });
 
   it('uses the webhook url', async () => {
     // Arrange
-    const fetchSpy = vi.spyOn(global, 'fetch');
-    const message: ForwardableEmailMessage = await createEmailMessage();
+    const fetchSpy = vi.mocked(globalThis.fetch);
+    const message = await createEmailMessage();
 
     // Act
     await email(message, { DISCORD_WEBHOOK_URL });
@@ -54,8 +60,10 @@ describe(email.name, () => {
 
   it('correctly passes the body to the webhook', async () => {
     // Arrange
-    const fetchSpy = vi.spyOn(global, 'fetch');
-    const message: ForwardableEmailMessage = await createEmailMessage({ body: 'Hello\nI have a question\nBye!' });
+    const fetchSpy = vi.mocked(globalThis.fetch);
+    const message = await createEmailMessage({
+      body: 'Hello\nI have a question\nBye!',
+    });
 
     // Act
     await email(message, { DISCORD_WEBHOOK_URL });
@@ -64,14 +72,16 @@ describe(email.name, () => {
     expect(fetchSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledWith(
       expect.anything(),
-      expect.objectContaining({ body: expect.stringContaining('I have a question') }),
+      expect.objectContaining({
+        body: expect.stringContaining('I have a question'),
+      }),
     );
   });
 
   it('splits long bodies over multiple calls', async () => {
     // Arrange
-    const fetchSpy = vi.spyOn(global, 'fetch');
-    const message: ForwardableEmailMessage = await createEmailMessage({
+    const fetchSpy = vi.mocked(globalThis.fetch);
+    const message = await createEmailMessage({
       from: 'sender@example.com',
       to: 'recipient@examples.com',
       subject: 'Question about foo',
@@ -88,12 +98,11 @@ describe(email.name, () => {
 
     // Assert
     expect(fetchSpy).toHaveBeenCalledTimes(3);
-    fetchMock.assertNoPendingInterceptors();
   });
 
   it("throws immediately if the webhook url isn't set", async () => {
     // Arrange
-    const message: ForwardableEmailMessage = await createEmailMessage();
+    const message = await createEmailMessage();
 
     // Act
     const call = email(message, { DISCORD_WEBHOOK_URL: undefined });
@@ -104,8 +113,8 @@ describe(email.name, () => {
 
   it('reflects when no subject was given', async () => {
     // Arrange
-    const fetchSpy = vi.spyOn(global, 'fetch');
-    const message: ForwardableEmailMessage = await createEmailMessage({ subject: '' });
+    const fetchSpy = vi.mocked(globalThis.fetch);
+    const message = await createEmailMessage({ subject: '' });
 
     // Act
     const call = email(message, { DISCORD_WEBHOOK_URL });
@@ -115,36 +124,44 @@ describe(email.name, () => {
     expect(fetchSpy).toHaveBeenCalledTimes(1);
     expect(fetchSpy).toHaveBeenCalledWith(
       expect.anything(),
-      expect.objectContaining({ body: expect.stringContaining('(no subject)') }),
+      expect.objectContaining({
+        body: expect.stringContaining('(no subject)'),
+      }),
     );
   });
 
   it('reports errors', async () => {
-    // Arrange
-    const message: ForwardableEmailMessage = await createEmailMessage();
-    const fetchSpy = vi.spyOn(global, 'fetch').mockImplementationOnce(() => {
+    // Arrange: first call throws (parse-or-post failure), the second call
+    // (the error report itself) hits the default 200 mock from beforeEach.
+    const fetchSpy = vi.mocked(globalThis.fetch).mockImplementationOnce(() => {
       throw new Error('Something unexpected');
     });
+    const message = await createEmailMessage();
 
     // Act
     const invocation = email(message, { DISCORD_WEBHOOK_URL });
-    const calls = fetchSpy.mock.calls;
 
     // Assert
     await expect(invocation).resolves.toBeUndefined();
     expect(fetchSpy.mock.calls[1]).toStrictEqual([
       expect.any(String),
-      expect.objectContaining({ body: expect.stringContaining('Something unexpected') }),
+      expect.objectContaining({
+        body: expect.stringContaining('Something unexpected'),
+      }),
     ]);
   });
 
   it('reports an error if the response is not ok', async () => {
-    // Arrange
-    const message: ForwardableEmailMessage = await createEmailMessage();
-    // @ts-ignore
-    const fetchSpy = vi.spyOn(global, 'fetch').mockImplementationOnce(() => {
-      return Promise.resolve({ ok: false, status: 500, json: () => Promise.resolve('Something unexpected') });
-    });
+    // Arrange: first call returns 500, second call (error report) hits the
+    // default 200 mock.
+    const fetchSpy = vi.mocked(globalThis.fetch).mockImplementationOnce(
+      async () =>
+        new Response('"Something unexpected"', {
+          status: 500,
+          headers: { 'content-type': 'application/json' },
+        }),
+    );
+    const message = await createEmailMessage();
 
     // Act
     const invocation = email(message, { DISCORD_WEBHOOK_URL });
@@ -153,17 +170,22 @@ describe(email.name, () => {
     await expect(invocation).resolves.toBeUndefined();
     expect(fetchSpy.mock.calls[1]).toStrictEqual([
       expect.any(String),
-      expect.objectContaining({ body: expect.stringContaining('Something unexpected') }),
+      expect.objectContaining({
+        body: expect.stringContaining('Something unexpected'),
+      }),
     ]);
   });
 
   it('throws if the error can not be reported', async () => {
-    // Arrange
-    const message: ForwardableEmailMessage = await createEmailMessage();
-    // @ts-ignore
-    const fetchSpy = vi.spyOn(global, 'fetch').mockImplementation(() => {
-      return Promise.resolve({ ok: false, status: 500, json: () => Promise.resolve('Something unexpected') });
-    });
+    // Arrange: every call (initial + error report) fails.
+    const fetchSpy = vi.mocked(globalThis.fetch).mockImplementation(
+      async () =>
+        new Response('"Something unexpected"', {
+          status: 500,
+          headers: { 'content-type': 'application/json' },
+        }),
+    );
+    const message = await createEmailMessage();
 
     // Act
     const invocation = email(message, { DISCORD_WEBHOOK_URL });

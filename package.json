@@ -27,13 +27,13 @@
     ".github/workflows/*.@(yml|yaml)": "actionlint"
   },
   "dependencies": {
-    "letterparser": "^0.1.5",
-    "util": "^0.12.5"
+    "letterparser": "^0.1.5"
   },
   "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "^0.16.0",
     "@cloudflare/workers-types": "^4.20240502.0",
     "@typescript/native-preview": "^7.0.0-dev.20260505.1",
-    "@vitest/coverage-v8": "^1.6.0",
+    "@vitest/coverage-istanbul": "^4.1.5",
     "eslint": "^10.3.0",
     "eslint-plugin-unicorn": "^64.0.0",
     "husky": "9",
@@ -41,12 +41,14 @@
     "oxfmt": "^0.48.0",
     "oxlint": "^1.63.0",
     "typescript": "^5.4.5",
-    "vitest": "^1.6.0",
-    "vitest-environment-miniflare": "^2.14.2"
+    "vitest": "^4"
   },
   "packageManager": "yarn@4.14.1",
   "dependenciesMeta": {
     "esbuild": {
+      "built": true
+    },
+    "workerd": {
       "built": true
     }
   }
