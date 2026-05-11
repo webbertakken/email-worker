@@ -201,61 +201,61 @@ __metadata:
   linkType: hard
 
 "@cloudflare/vitest-pool-workers@npm:^0.16.0":
-  version: 0.16.0
-  resolution: "@cloudflare/vitest-pool-workers@npm:0.16.0"
+  version: 0.16.3
+  resolution: "@cloudflare/vitest-pool-workers@npm:0.16.3"
   dependencies:
     cjs-module-lexer: "npm:^1.2.3"
     esbuild: "npm:0.27.3"
-    miniflare: "npm:4.20260504.0"
-    wrangler: "npm:4.88.0"
+    miniflare: "npm:4.20260507.1"
+    wrangler: "npm:4.90.0"
     zod: "npm:^3.25.76"
   peerDependencies:
     "@vitest/runner": ^4.1.0
     "@vitest/snapshot": ^4.1.0
     vitest: ^4.1.0
-  checksum: 10/7dc9ac3b4cc05fd12d67cf19c87ac83812138e4f34a5462dbcd6739b0387d5279b78ca080e96159c7c5b019072529d7ea4cb9cee8bd1d57ec7e13d287357b7b6
+  checksum: 10/50c50a1d2f835fb8eba31482e39668eff8bb0dc197c96d3af9bbc820dbcd084a9d928d7dd9d62fc1403ff3880519987fccb0e81cb5d547b75bbc19b4afaf6d10
   languageName: node
   linkType: hard
 
-"@cloudflare/workerd-darwin-64@npm:1.20260504.1":
-  version: 1.20260504.1
-  resolution: "@cloudflare/workerd-darwin-64@npm:1.20260504.1"
+"@cloudflare/workerd-darwin-64@npm:1.20260507.1":
+  version: 1.20260507.1
+  resolution: "@cloudflare/workerd-darwin-64@npm:1.20260507.1"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@cloudflare/workerd-darwin-arm64@npm:1.20260504.1":
-  version: 1.20260504.1
-  resolution: "@cloudflare/workerd-darwin-arm64@npm:1.20260504.1"
+"@cloudflare/workerd-darwin-arm64@npm:1.20260507.1":
+  version: 1.20260507.1
+  resolution: "@cloudflare/workerd-darwin-arm64@npm:1.20260507.1"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@cloudflare/workerd-linux-64@npm:1.20260504.1":
-  version: 1.20260504.1
-  resolution: "@cloudflare/workerd-linux-64@npm:1.20260504.1"
+"@cloudflare/workerd-linux-64@npm:1.20260507.1":
+  version: 1.20260507.1
+  resolution: "@cloudflare/workerd-linux-64@npm:1.20260507.1"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"@cloudflare/workerd-linux-arm64@npm:1.20260504.1":
-  version: 1.20260504.1
-  resolution: "@cloudflare/workerd-linux-arm64@npm:1.20260504.1"
+"@cloudflare/workerd-linux-arm64@npm:1.20260507.1":
+  version: 1.20260507.1
+  resolution: "@cloudflare/workerd-linux-arm64@npm:1.20260507.1"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"@cloudflare/workerd-windows-64@npm:1.20260504.1":
-  version: 1.20260504.1
-  resolution: "@cloudflare/workerd-windows-64@npm:1.20260504.1"
+"@cloudflare/workerd-windows-64@npm:1.20260507.1":
+  version: 1.20260507.1
+  resolution: "@cloudflare/workerd-windows-64@npm:1.20260507.1"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
 "@cloudflare/workers-types@npm:^4.20240502.0":
-  version: 4.20260503.1
-  resolution: "@cloudflare/workers-types@npm:4.20260503.1"
-  checksum: 10/59d8994d1fc0661b3ef0efed173a8fff24422e96c2c60cf2c0a9d9edf55ba6c49a33c346df5b18cda0f8870954908326dace8046977f181cd2226210fde36495
+  version: 4.20260510.1
+  resolution: "@cloudflare/workers-types@npm:4.20260510.1"
+  checksum: 10/90d35512c7646169a24f83e4452a59c93ac3308c62f4ab11abfbbc3473276f0fec52a6381b4994ef85ffc0b24fe8d93ca52939371b647d4fe7817526ebefd7c0
   languageName: node
   linkType: hard
 
@@ -1424,66 +1424,66 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript/native-preview-darwin-arm64@npm:7.0.0-dev.20260505.1":
-  version: 7.0.0-dev.20260505.1
-  resolution: "@typescript/native-preview-darwin-arm64@npm:7.0.0-dev.20260505.1"
+"@typescript/native-preview-darwin-arm64@npm:7.0.0-dev.20260510.1":
+  version: 7.0.0-dev.20260510.1
+  resolution: "@typescript/native-preview-darwin-arm64@npm:7.0.0-dev.20260510.1"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@typescript/native-preview-darwin-x64@npm:7.0.0-dev.20260505.1":
-  version: 7.0.0-dev.20260505.1
-  resolution: "@typescript/native-preview-darwin-x64@npm:7.0.0-dev.20260505.1"
+"@typescript/native-preview-darwin-x64@npm:7.0.0-dev.20260510.1":
+  version: 7.0.0-dev.20260510.1
+  resolution: "@typescript/native-preview-darwin-x64@npm:7.0.0-dev.20260510.1"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@typescript/native-preview-linux-arm64@npm:7.0.0-dev.20260505.1":
-  version: 7.0.0-dev.20260505.1
-  resolution: "@typescript/native-preview-linux-arm64@npm:7.0.0-dev.20260505.1"
+"@typescript/native-preview-linux-arm64@npm:7.0.0-dev.20260510.1":
+  version: 7.0.0-dev.20260510.1
+  resolution: "@typescript/native-preview-linux-arm64@npm:7.0.0-dev.20260510.1"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"@typescript/native-preview-linux-arm@npm:7.0.0-dev.20260505.1":
-  version: 7.0.0-dev.20260505.1
-  resolution: "@typescript/native-preview-linux-arm@npm:7.0.0-dev.20260505.1"
+"@typescript/native-preview-linux-arm@npm:7.0.0-dev.20260510.1":
+  version: 7.0.0-dev.20260510.1
+  resolution: "@typescript/native-preview-linux-arm@npm:7.0.0-dev.20260510.1"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@typescript/native-preview-linux-x64@npm:7.0.0-dev.20260505.1":
-  version: 7.0.0-dev.20260505.1
-  resolution: "@typescript/native-preview-linux-x64@npm:7.0.0-dev.20260505.1"
+"@typescript/native-preview-linux-x64@npm:7.0.0-dev.20260510.1":
+  version: 7.0.0-dev.20260510.1
+  resolution: "@typescript/native-preview-linux-x64@npm:7.0.0-dev.20260510.1"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"@typescript/native-preview-win32-arm64@npm:7.0.0-dev.20260505.1":
-  version: 7.0.0-dev.20260505.1
-  resolution: "@typescript/native-preview-win32-arm64@npm:7.0.0-dev.20260505.1"
+"@typescript/native-preview-win32-arm64@npm:7.0.0-dev.20260510.1":
+  version: 7.0.0-dev.20260510.1
+  resolution: "@typescript/native-preview-win32-arm64@npm:7.0.0-dev.20260510.1"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@typescript/native-preview-win32-x64@npm:7.0.0-dev.20260505.1":
-  version: 7.0.0-dev.20260505.1
-  resolution: "@typescript/native-preview-win32-x64@npm:7.0.0-dev.20260505.1"
+"@typescript/native-preview-win32-x64@npm:7.0.0-dev.20260510.1":
+  version: 7.0.0-dev.20260510.1
+  resolution: "@typescript/native-preview-win32-x64@npm:7.0.0-dev.20260510.1"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
 "@typescript/native-preview@npm:^7.0.0-dev.20260505.1":
-  version: 7.0.0-dev.20260505.1
-  resolution: "@typescript/native-preview@npm:7.0.0-dev.20260505.1"
+  version: 7.0.0-dev.20260510.1
+  resolution: "@typescript/native-preview@npm:7.0.0-dev.20260510.1"
   dependencies:
-    "@typescript/native-preview-darwin-arm64": "npm:7.0.0-dev.20260505.1"
-    "@typescript/native-preview-darwin-x64": "npm:7.0.0-dev.20260505.1"
-    "@typescript/native-preview-linux-arm": "npm:7.0.0-dev.20260505.1"
-    "@typescript/native-preview-linux-arm64": "npm:7.0.0-dev.20260505.1"
-    "@typescript/native-preview-linux-x64": "npm:7.0.0-dev.20260505.1"
-    "@typescript/native-preview-win32-arm64": "npm:7.0.0-dev.20260505.1"
-    "@typescript/native-preview-win32-x64": "npm:7.0.0-dev.20260505.1"
+    "@typescript/native-preview-darwin-arm64": "npm:7.0.0-dev.20260510.1"
+    "@typescript/native-preview-darwin-x64": "npm:7.0.0-dev.20260510.1"
+    "@typescript/native-preview-linux-arm": "npm:7.0.0-dev.20260510.1"
+    "@typescript/native-preview-linux-arm64": "npm:7.0.0-dev.20260510.1"
+    "@typescript/native-preview-linux-x64": "npm:7.0.0-dev.20260510.1"
+    "@typescript/native-preview-win32-arm64": "npm:7.0.0-dev.20260510.1"
+    "@typescript/native-preview-win32-x64": "npm:7.0.0-dev.20260510.1"
   dependenciesMeta:
     "@typescript/native-preview-darwin-arm64":
       optional: true
@@ -1501,7 +1501,7 @@ __metadata:
       optional: true
   bin:
     tsgo: bin/tsgo.js
-  checksum: 10/fe73acd54b19881feb26e42097f829ed5cdcaf1336fd81a6296abb749148185844710f42eb24e65f160ccd9c765dc1d326e0e1e226094eed35f263214d76919e
+  checksum: 10/d4823422b15532524c25e34fb4cb724ed8e59fa3a63e56b37a78a528baa555ba3c96a294d8386ba272139df5a92b58c4514e79753ac3e205c97da2d6dcf4c64c
   languageName: node
   linkType: hard
 
@@ -3139,19 +3139,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"miniflare@npm:4.20260504.0":
-  version: 4.20260504.0
-  resolution: "miniflare@npm:4.20260504.0"
+"miniflare@npm:4.20260507.1":
+  version: 4.20260507.1
+  resolution: "miniflare@npm:4.20260507.1"
   dependencies:
     "@cspotcode/source-map-support": "npm:0.8.1"
     sharp: "npm:^0.34.5"
     undici: "npm:7.24.8"
-    workerd: "npm:1.20260504.1"
+    workerd: "npm:1.20260507.1"
     ws: "npm:8.18.0"
     youch: "npm:4.1.0-beta.10"
   bin:
     miniflare: bootstrap.js
-  checksum: 10/7f9890ba3e8768bb351edb9c17781c89b0720e198d3968c609ff7c144894ca36a51125d9fb7ec92c52be01f5760979a295a68907517128d0c673b0e8b4caf421
+  checksum: 10/a31a89c1bd278666c0e74ecb593ec7a29e3d2b4bfe898eeb545ac24e1563defb05ee0e1639af818b33e2edf3d015889b0ccd1feffeab007889de2a8579c23d58
   languageName: node
   linkType: hard
 
@@ -4396,15 +4396,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"workerd@npm:1.20260504.1":
-  version: 1.20260504.1
-  resolution: "workerd@npm:1.20260504.1"
+"workerd@npm:1.20260507.1":
+  version: 1.20260507.1
+  resolution: "workerd@npm:1.20260507.1"
   dependencies:
-    "@cloudflare/workerd-darwin-64": "npm:1.20260504.1"
-    "@cloudflare/workerd-darwin-arm64": "npm:1.20260504.1"
-    "@cloudflare/workerd-linux-64": "npm:1.20260504.1"
-    "@cloudflare/workerd-linux-arm64": "npm:1.20260504.1"
-    "@cloudflare/workerd-windows-64": "npm:1.20260504.1"
+    "@cloudflare/workerd-darwin-64": "npm:1.20260507.1"
+    "@cloudflare/workerd-darwin-arm64": "npm:1.20260507.1"
+    "@cloudflare/workerd-linux-64": "npm:1.20260507.1"
+    "@cloudflare/workerd-linux-arm64": "npm:1.20260507.1"
+    "@cloudflare/workerd-windows-64": "npm:1.20260507.1"
   dependenciesMeta:
     "@cloudflare/workerd-darwin-64":
       optional: true
@@ -4418,25 +4418,25 @@ __metadata:
       optional: true
   bin:
     workerd: bin/workerd
-  checksum: 10/9464aba340c95fd89d42ee2c5c9d10d6edda55005090e1d520f5f3c695b9fdd95b6c0606d36324c9012675ead678932e2dfcc04e95817810dba9930c49889b4e
+  checksum: 10/1b3df7ade62417680f73818bc2eda9136d3e802ddf7d8ce09083b596fe08a362ae7a1e9a9e4f360c06aa93b27c0473f86c24a0402bd14f6dd53f4814b5f458cc
   languageName: node
   linkType: hard
 
-"wrangler@npm:4.88.0":
-  version: 4.88.0
-  resolution: "wrangler@npm:4.88.0"
+"wrangler@npm:4.90.0":
+  version: 4.90.0
+  resolution: "wrangler@npm:4.90.0"
   dependencies:
     "@cloudflare/kv-asset-handler": "npm:0.5.0"
     "@cloudflare/unenv-preset": "npm:2.16.1"
     blake3-wasm: "npm:2.1.5"
     esbuild: "npm:0.27.3"
     fsevents: "npm:~2.3.2"
-    miniflare: "npm:4.20260504.0"
+    miniflare: "npm:4.20260507.1"
     path-to-regexp: "npm:6.3.0"
     unenv: "npm:2.0.0-rc.24"
-    workerd: "npm:1.20260504.1"
+    workerd: "npm:1.20260507.1"
   peerDependencies:
-    "@cloudflare/workers-types": ^4.20260504.1
+    "@cloudflare/workers-types": ^4.20260507.1
   dependenciesMeta:
     fsevents:
       optional: true
@@ -4446,7 +4446,7 @@ __metadata:
   bin:
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: 10/5bda05b958a1887230e42c7a64e3ad93495e41b105189cb54b991d78bca251b5c577333cdc016722da02cb5e749dd4c1e5b3aeeae137726a90f9995a8a18809a
+  checksum: 10/74218e15fbcbf31af709582ba5690903e5fe897756fcfc88b481aa90e3c5afaa024757a18a6c24401fd932eba5968686638a0b4afd61fa7a21bef6a67b6a6d61
   languageName: node
   linkType: hard
 
