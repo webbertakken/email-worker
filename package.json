@@ -30,7 +30,7 @@
     "letterparser": "^0.1.5"
   },
   "devDependencies": {
-    "@cloudflare/vitest-pool-workers": "^0.18.0",
+    "@cloudflare/vitest-pool-workers": "^0.20.0",
     "@cloudflare/workers-types": "^4.20240502.0",
     "@typescript/native-preview": "^7.0.0-dev.20260505.1",
     "@vitest/coverage-istanbul": "^4.1.5",
@@ -38,7 +38,7 @@
     "eslint-plugin-unicorn": "^64.0.0",
     "husky": "9",
     "lint-staged": "^16.4.0",
-    "oxfmt": "^0.60.0",
+    "oxfmt": "^0.61.0",
     "oxlint": "^1.63.0",
     "typescript": "^5.4.5",
     "vitest": "^4"
