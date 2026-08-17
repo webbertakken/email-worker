@@ -1,6 +1,6 @@
 [tools]
 node = "20.20.2"
-yarn = "4.17.1"
+yarn = "4.18.0"
 actionlint = "latest"
 shellcheck = "latest"
 gitleaks = "latest"
