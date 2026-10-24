@@ -25,7 +25,8 @@ Steps to be performed to submit a pull request:
 
 #### Pull Request Prerequisites
 
-You have [Node](https://nodejs.org/) installed at v12.2.0+ and [Yarn](https://yarnpkg.com/) at v1.18.0+.
+You have [mise](https://mise.jdx.dev/) installed; `mise install` provides [Node](https://nodejs.org/) 26 and
+[Yarn](https://yarnpkg.com/) 4 at the versions pinned in `mise.toml`.
 
 Please note that commit hooks will run automatically to perform some tasks;
 

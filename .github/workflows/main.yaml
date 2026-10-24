@@ -11,18 +11,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Read Node version from mise.toml
+      # Installs (and caches) every tool pinned in mise.toml, Node and yarn
+      # included, and puts them ahead of the runner's own on PATH.
+      - name: Install tools (from mise.toml)
+        uses: jdx/mise-action@v5
+
+      - name: Read the Node version mise installed
         id: node
-        run: echo "version=$(grep -E '^node\s*=' mise.toml | sed -E 's/.*"([^"]+)".*/\1/')" >> "$GITHUB_OUTPUT"
-
-      - name: Install package manager (from package.json)
-        run: |
-          corepack enable
-          corepack install
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ steps.node.outputs.version }}
+        run: echo "version=$(node --version)" >> "$GITHUB_OUTPUT"
 
       - name: Resolve yarn cache folder
         id: yarn-config
