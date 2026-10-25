@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
       # Installs (and caches) every tool pinned in mise.toml, Node and yarn
       # included, and puts them ahead of the runner's own on PATH.
