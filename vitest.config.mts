@@ -1,8 +1,8 @@
-import { cloudflareTest } from '@cloudflare/vitest-pool-workers';
+import { cloudflareTest } from '@cloudflare/vitest-plugin';
 import { defineProject } from 'vitest/config';
 
 // Tests run inside the Cloudflare Workers runtime (workerd) via
-// `@cloudflare/vitest-pool-workers`. This replaces the old
+// `@cloudflare/vitest-plugin`. This replaces the old
 // `vitest-environment-miniflare` (miniflare 2.x) setup, which is no longer
 // maintained.
 //

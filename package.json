@@ -30,7 +30,7 @@
     "letterparser": "^0.1.5"
   },
   "devDependencies": {
-    "@cloudflare/vitest-pool-workers": "^0.23.0",
+    "@cloudflare/vitest-plugin": "^1.4.7",
     "@cloudflare/workers-types": "^5.0.0",
     "@typescript/native-preview": "^7.0.0-dev.20260505.1",
     "@vitest/coverage-istanbul": "^5.0.0",
@@ -41,6 +41,7 @@
     "oxfmt": "^0.74.0",
     "oxlint": "^1.63.0",
     "typescript": "^5.4.5",
+    "vite": "^8",
     "vitest": "^5.0.0"
   },
   "packageManager": "yarn@4.18.1",
