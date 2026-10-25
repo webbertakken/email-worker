@@ -14,7 +14,7 @@ jobs:
       # Installs (and caches) every tool pinned in mise.toml, Node and yarn
       # included, and puts them ahead of the runner's own on PATH.
       - name: Install tools (from mise.toml)
-        uses: jdx/mise-action@v5
+        uses: jdx/mise-action@8418fedb1110381a0d3ba51a7a415d7c1b884550 # v5.2.2
 
       - name: Read the Node version mise installed
         id: node
