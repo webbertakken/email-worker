@@ -236,17 +236,17 @@ __metadata:
   linkType: hard
 
 "@cloudflare/vitest-plugin@npm:^1.4.7":
-  version: 1.4.9
-  resolution: "@cloudflare/vitest-plugin@npm:1.4.9"
+  version: 1.4.10
+  resolution: "@cloudflare/vitest-plugin@npm:1.4.10"
   dependencies:
     cjs-module-lexer: "npm:1.2.3"
     esbuild: "npm:0.28.2"
-    miniflare: "npm:5.20261023.1-beta"
-    wrangler: "npm:4.154.0"
+    miniflare: "npm:5.20261023.2-beta"
+    wrangler: "npm:4.155.0"
     zod: "npm:4.6.6"
   peerDependencies:
     vitest: ^4.1.0 || ^5.0.0
-  checksum: 10/518a90ad90dc3a3b6b0c3aab074762a17657575869ccd550620daacfc86d30bbecada6bd1c51e0fac56755693c36c63fd3787e52e0915aa73596e4a43eac1ae3
+  checksum: 10/2b0b7744954d7438a1fae44e242f121f3333d190c95d36e48a6b26e80617a864a038f22d3bced4a080d9e70bdf6c88657c092eccf3c6c3af3ae54c8360fa8041
   languageName: node
   linkType: hard
 
@@ -3078,9 +3078,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"miniflare@npm:5.20261023.1-beta":
-  version: 5.20261023.1-beta
-  resolution: "miniflare@npm:5.20261023.1-beta"
+"miniflare@npm:5.20261023.2-beta":
+  version: 5.20261023.2-beta
+  resolution: "miniflare@npm:5.20261023.2-beta"
   dependencies:
     "@cspotcode/source-map-support": "npm:0.8.1"
     sharp: "npm:0.35.5"
@@ -3088,7 +3088,7 @@ __metadata:
     workerd: "npm:1.20261023.1"
     ws: "npm:8.21.0"
     youch: "npm:4.1.0-beta.10"
-  checksum: 10/7922f46206c051960b6318581434c5e905be5c63f93cb9fa6c14e1e1a01f6d20236be20c14d6619b9bb1299f59a68d1cc706a0c94b3bd4a8e85114a735519a12
+  checksum: 10/e8163985f603755ae0168c3fb91d5965702331b777ee3b3cc7fdfdca2c747fa7c6125f28b42d216af770fb24d5f55ec381491806723f7928ebaace353fd0dc79
   languageName: node
   linkType: hard
 
@@ -4156,16 +4156,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"wrangler@npm:4.154.0":
-  version: 4.154.0
-  resolution: "wrangler@npm:4.154.0"
+"wrangler@npm:4.155.0":
+  version: 4.155.0
+  resolution: "wrangler@npm:4.155.0"
   dependencies:
     "@cloudflare/kv-asset-handler": "npm:0.5.0"
     "@cloudflare/unenv-preset": "npm:2.16.2"
     blake3-wasm: "npm:2.1.5"
     esbuild: "npm:0.28.2"
     fsevents: "npm:2.3.3"
-    miniflare: "npm:5.20261023.1-beta"
+    miniflare: "npm:5.20261023.2-beta"
     path-to-regexp: "npm:6.3.0"
     unenv: "npm:2.0.0-rc.24"
     workerd: "npm:1.20261023.1"
@@ -4181,7 +4181,7 @@ __metadata:
     cf-wrangler: bin/cf-wrangler.js
     wrangler: bin/wrangler.js
     wrangler2: bin/wrangler.js
-  checksum: 10/5e6a400a118943b9d43b52789b06fec1db01ac7763700141f38f6dbe49adf554d5fd0251300e9da0142f0470a7fc59aa93f8e07d9e441be3d85cf3bf8e7f1772
+  checksum: 10/4dff4ac70280dfd3faa6e7d0989389c88139a8e00199702bc5cc22315bf9f5abeef4137a41166ce21eb004bfe7781e24494cc1a40a6559a27b89133aae97297a
   languageName: node
   linkType: hard
 
