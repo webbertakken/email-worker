@@ -1,5 +1,5 @@
 [tools]
-node = "26.12.1"
+node = "26.13.0"
 yarn = "4.18.1"
 actionlint = "latest"
 shellcheck = "latest"
