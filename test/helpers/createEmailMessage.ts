@@ -29,6 +29,7 @@ export const createEmailMessage = (overrides: Partial<Props> = {}): ForwardableE
     headers: new Headers({ From: from, To: to, Subject: subject, 'Content-Type': 'text/plain', ...headers }),
     raw: blob.stream(),
     rawSize: blob.size,
+    canBeForwarded: true,
     setReject: vi.fn(),
     forward: vi.fn(),
     reply: vi.fn(),
