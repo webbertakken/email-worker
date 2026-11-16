@@ -35,7 +35,7 @@
     "@typescript/native-preview": "^7.0.0-dev.20260505.1",
     "@vitest/coverage-istanbul": "^5.0.0",
     "eslint": "^10.3.0",
-    "eslint-plugin-unicorn": "^79.0.0",
+    "eslint-plugin-unicorn": "^80.0.0",
     "husky": "9",
     "lint-staged": "^17.0.0",
     "oxfmt": "^0.78.0",
